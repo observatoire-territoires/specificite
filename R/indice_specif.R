@@ -34,7 +34,6 @@
 ####################################################################################################
 indice_specif <- function(bdd,diff=FALSE){
 
-  #codgeo <- bdd[1,]
   BDD <- bdd[,2:ncol(bdd)]
   K <- ncol(BDD) # nb de categories
   I <- nrow(BDD) # nb de zones
@@ -58,6 +57,7 @@ indice_specif <- function(bdd,diff=FALSE){
   }
 
   colnames(indice_specificite) <- paste0("indice_specif_",variables)
-  res <- cbind(BDD,indice_specificite)
+  res <- cbind(bdd,indice_specificite)
   return(res)
 }
+

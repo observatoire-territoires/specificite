@@ -39,7 +39,7 @@ gini_spe <- function(bdd){
     }
     gini_specialisation[i] <- reldist::gini((ordonnee/abscisse), weights=abscisse)
   }
-  res<- cbind(BDD,gini_specialisation)
+  res<- cbind(bdd,gini_specialisation)
   return(res)
 }
 
