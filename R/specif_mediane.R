@@ -19,7 +19,7 @@
 ##' bdd <- data.frame(zones=c("zone1","zone2","zone3","zone4"),categorie1=c(22,14,7,55),
 ##' categorie2=c(32,17,12,9),categorie3=c(41,32,10,16))
 ##' specif_mediane(bdd)
-##' specif_mediane(bdd,part=TRUE)
+##' specif_mediane(bdd,part=FALSE)
 ##'
 ##' @return data.frame. Renvoit la base de données initiale avec une colonne supplémentaire contenant le
 ##' coefficient de spécificté globale comparant chaque zone à la médiane
