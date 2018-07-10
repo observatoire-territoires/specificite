@@ -2,7 +2,7 @@
 % Please edit documentation in R/indice_specif.R
 \name{indice_specif}
 \alias{indice_specif}
-\title{Cette fonction calcule l'indice de spécificté de Kubrak}
+\title{Calculer l'indice de spécificté de Kubrak}
 \usage{
 indice_specif(bdd, diff = FALSE)
 }
@@ -22,6 +22,7 @@ reste du territoire. Les nouvelles colonnes se nomment "indic_specif_" suivi du 
 variable initiale.
 }
 \description{
+Cette fonction calcule l'indice de spécificté de Kubrak
 L'indice de spécificté de Kubrak est calculé pour chaque zone et chaque catégorie.
 r(ik) = X(ik)/X(k)  / ( (X(k) - X(ik)) / (X-X(i)) ) (par ratio)
 r(ik) = X(ik)/X(k)  - ( (X(k) - X(ik)) / (X-X(i)) ) (par différence)

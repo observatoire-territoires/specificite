@@ -1,25 +1,25 @@
 ###################################################################################
 ##'
 ##' @title
-##' Cette fonction calcule un coefficient de spécificté globale comparant chaque zone
+##' Calculer un coefficient de spécificté globale comparant chaque zone
 ##' à la médiane du reste du territoire
 ##'
 ##' @param bdd data.frame. La base de données avec en première colonne le code géographique
 ##' et les effectifs ou part des différentes catégories dans les colonnes suivantes.
 ##' @param part boolean.  Indique si les données sont remplies en nombre (part=FALSE) ou
 ##' en part (part=TRUE) : dans ce cas, la somme des valeurs d'une ligne vaut 1.
-##' Par défaut il vaut FALSE.
+##' Par défaut vaut FALSE.
 ##'
 ##' @description
 ##' Cette fonction calcule un coefficient de spécificté globale comparant chaque zone
-##' à la médiane
+##' à la médianedu reste du territoire
 ##'
 ##'
 ##' @examples
 ##' bdd <- data.frame(zones=c("zone1","zone2","zone3","zone4"),categorie1=c(22,14,7,55),
 ##' categorie2=c(32,17,12,9),categorie3=c(41,32,10,16))
-##' mediane(bdd)
-##' mediane(bdd,part=TRUE)
+##' specif_mediane(bdd)
+##' specif_mediane(bdd,part=TRUE)
 ##'
 ##' @return data.frame. Renvoit la base de données initiale avec une colonne supplémentaire contenant le
 ##' coefficient de spécificté globale comparant chaque zone à la médiane
@@ -30,7 +30,11 @@
 ##'
 ##'
 
-mediane <- function(bdd,part=FALSE){
+specif_mediane <- function(bdd,part=FALSE){
+  
+  if(class(bdd)[1]!="data.frame"){
+    bdd <- as.data.frame(bdd)
+  }
 
   BDD <- bdd[,2:ncol(bdd)]
   K <- ncol(BDD) # nb de categories

@@ -1,7 +1,7 @@
 ###################################################################################
 ##'
 ##' @title
-##' Cette fonction calcule l'indice de Gini de spécificité globale
+##' Calculer l'indice de Gini de spécificité globale
 ##'
 ##' @param bdd data.frame. La base de données avec en première colonne le code géographique
 ##' et les effectifs des différentes catégories dans les colonnes suivantes.
@@ -17,13 +17,17 @@
 ##' gini_spe(bdd)
 ##'
 ##' @return data.frame. Renvoit la base de données initiale avec une colonne supplémentaire contenant
-##' l'indice de Gini de spécificité globale
+##' l'indice de Gini de spécificité globale.
 ##' @importFrom reldist gini
 ##' @export
 ##'
 ##'
 
 gini_spe <- function(bdd){
+  
+  if(class(bdd)[1]!="data.frame"){
+    bdd <- as.data.frame(bdd)
+  }
 
   BDD <- bdd[,2:ncol(bdd)]
   K <- ncol(BDD) # nb de categories

@@ -1,7 +1,7 @@
 ###################################################################################
 ##'
 ##' @title
-##' Cette fonction calcule l'indice de spécificté de Kubrak
+##' Calculer l'indice de spécificté de Kubrak
 ##'
 ##' @param bdd data.frame. La base de données avec en première colonne le code géographique
 ##' et les effectifs des différentes catégories dans les colonnes suivantes.
@@ -12,6 +12,7 @@
 ##'
 ##'
 ##' @description
+##' Cette fonction calcule l'indice de spécificté de Kubrak
 ##' L'indice de spécificté de Kubrak est calculé pour chaque zone et chaque catégorie.
 ##' r(ik) = X(ik)/X(k)  / ( (X(k) - X(ik)) / (X-X(i)) ) (par ratio)
 ##' r(ik) = X(ik)/X(k)  - ( (X(k) - X(ik)) / (X-X(i)) ) (par différence)
@@ -33,6 +34,10 @@
 ##'
 ####################################################################################################
 indice_specif <- function(bdd,diff=FALSE){
+  
+  if(class(bdd)[1]!="data.frame"){
+    bdd <- as.data.frame(bdd)
+  }
 
   BDD <- bdd[,2:ncol(bdd)]
   K <- ncol(BDD) # nb de categories

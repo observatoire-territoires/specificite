@@ -1,15 +1,18 @@
 ####################################################################################################
 ##'
 ##' @title
-##' Calculer le coefficient de specificte globale de Krugman, réaliser la carte 
+##' Réaliser la carte d'un coefficient de spécificité globale comparant chaque zone
+##' à la médiane du reste du territoire 
 ##'
 ##' @param bdd data.frame. La base de données avec en première colonne le code géographique
 ##' et les effectifs des différentes catégories dans les colonnes suivantes.
+##' @param part boolean.  Indique si les données sont remplies en nombre (part=FALSE) ou
+##' en part (part=TRUE) : dans ce cas, la somme des valeurs d'une ligne vaut 1.
+##' Par défaut vaut FALSE.
 ##' @param carte spdf. Fond de carte à la même échelle que la base de données. Par defaut NA.
-##' Si non renseigné aucune carte n'est affichée.
 ##' @param methode string. Méthode de discrétisation de la carte. Voir \link[cartography]{choroLayer}
 ##' pour les différentes méthodes possibles. Par défaut la méthode est "fisher-jenks".
-##' @param titre character. Titre de la carte. Par défaut il est "Indice de Krugman".
+##' @param titre character. Titre de la carte. Par défaut il est "Indice de specificite globale par rapport a la mediane".
 ##' @param n int. Nombre de classes à faire dans la carte. Par défaut : 5.
 ##' @param cols character. Les couleurs à utiliser pour la carte. Voir \link[cartography]{carto.pal}
 ##' pour les palettes de couleur. Par défaut : carto.pal(pal1 = "purple.pal", n1 = 5)
@@ -23,23 +26,16 @@
 ##'
 ##'
 ##' @description
-##' Cette fonction calcule le coefficient de spécificté globale de Krugman.
-##' Le coefficient de Krugman est un indice de spécificité globale d'une zone par rapport
-##' au reste du territoire, il est calculé pour chaque zone. Ce coefficient est compris entre
-##' 0 et 1, s'il est égal à 1 le territoire est très specifique par rapport aux autres.
-##' Cette fonction peut également afficher la carte de l'indice de Krugman lorsque les variables
-##' nécessaires sont données à la fonction (fond de carte à la bonne échelle au minimum).
+##' Cette fonction affiche la carte du coefficient de spécificité globale comparant chaque zone
+##' à la médiane du reste du territoire. 
 ##'
 ##'
 ##' @examples
-##' bdd <- data.frame(zones=c("zone1","zone2","zone3","zone4"),categorie1=c(22,14,7,55),
-##' categorie2=c(32,17,12,9),categorie3=c(41,32,10,16))
-##' krugman(bdd)
+##' # mettre un exemple
 ##'
 ##'
-##' @return data.frame. Renvoit la base de données initiale avec une colonne supplémentaire contenant le
-##' coefficient de Krugman. 
-##' Affiche seulement la carte si le fond de plan est donné.
+##' @return Affiche la carte du coefficient de spécificité globale comparant chaque zone
+##' à la médiane du reste du territoire 
 ##' @importFrom cartography choroLayer carto.pal
 ##' @importFrom graphics plot
 ##' @export
@@ -47,25 +43,45 @@
 ##'
 
 
-krugman <- function(bdd,carte=NA, codgeo1=NA,codgeo2=NA, methode="fisher-jenks", contour=TRUE,
-                    titre="Indice de Krugman", n=5,cols=carto.pal(pal1 = "purple.pal", n1 = n)){
+carte_specif_mediane <- function(bdd,part=FALSE,carte=NA, codgeo1=NA,codgeo2=NA, methode="fisher-jenks", contour=TRUE,
+                    titre="Indice de specificite globale par rapport a la mediane", n=5,cols=carto.pal(pal1 = "purple.pal", n1 = n)){
   
   if(class(bdd)[1]!="data.frame"){
     bdd <- as.data.frame(bdd)
   }
-
-  BDD <- bdd[,2:ncol(bdd)]
-  K <- ncol(BDD) # nb de categories
-  I <- nrow(BDD) # nb de zones
-  krugman <- NA
-  for ( i in 1:I) { #pour toutes les zones
-    krugman[i] <- 0
-    for ( k in 1:K) { #pour chaque categorie
-      krugman[i] <- krugman[i] + abs( (BDD[i,k] / sum(BDD[i,1:(K)])) - sum(BDD[-i,k]) / sum(BDD[-i,1:(K)]) )
-    }
-    krugman[i] <- (1/2)*krugman[i]
-  }
-  res <- cbind(bdd,krugman)
+  
+  # BDD <- bdd[,2:ncol(bdd)]
+  # K <- ncol(BDD) # nb de categories
+  # I <- nrow(BDD) # nb de zones
+  # mediane <- NA
+  # # si la base est remplie en nombre
+  # if (!part){
+  #   # pour pouvoir calculer la médiane il faut d'abord calculer les parts de chaque cétagorie dans chaque zone
+  #   bdd_pct <- bdd %>%
+  #     adorn_totals("col") %>%                  # Rajoute la colonne "Total"
+  #     adorn_percentages(denominator="row")  # calcule %
+  #   bdd_pct <- bdd_pct[,-ncol(bdd_pct)] # enleve la derniere colonne "Total"
+  #   BDD <- bdd_pct[,2:ncol(bdd_pct)]
+  #   for ( i in 1:I) {
+  #     mediane[i] <- 0
+  #     for ( k in 1:K) {
+  #       mediane[i] <- mediane[i] + abs(BDD[i,k] - median(BDD[-i,k]))
+  #     }
+  #   }
+  # }
+  # # si la base est rempli en part/pourcentage avec X(ik)/X(i)
+  # else {
+  #   for ( i in 1:I) {
+  #     mediane[i] <- 0
+  #     for ( k in 1:K) {
+  #       mediane[i] <- mediane[i] + abs(BDD[i,k] - median(BDD[-i,k]))
+  #     }
+  #   }
+  # }
+  # res <- cbind(bdd,mediane)
+  
+  res <- specificite::specif_mediane(bdd,part)
+  
   if(class(carte)[1]=="sf"){
     if(is.na(codgeo1)){
       codgeo1 <- colnames(carte)[1]
@@ -75,7 +91,7 @@ krugman <- function(bdd,carte=NA, codgeo1=NA,codgeo2=NA, methode="fisher-jenks",
     }
     carto <- merge(carte,res,by.x=codgeo1, by.y=codgeo2)
     choroLayer(x=carto,
-               var="krugman",
+               var="mediane",
                method=methode,
                nclass=n,
                col = cols,
@@ -88,8 +104,5 @@ krugman <- function(bdd,carte=NA, codgeo1=NA,codgeo2=NA, methode="fisher-jenks",
     if (contour){
       plot(carte, col=NA, add=TRUE) # warning si plusieurs variables dans carte, sinon faire select(carte,geometry)
     }
-  }
-  else{
-    return(res)
   }
 }

@@ -2,11 +2,11 @@
 % Please edit documentation in R/carte_indice_specif.R
 \name{carte_indice_specif}
 \alias{carte_indice_specif}
-\title{Cette fonction réalise la carte de l'indice de spécificté de Kubrak pour une catégorie}
+\title{Réaliser la carte de l'indice de spécificité de Kubrak pour une catégorie}
 \usage{
-carte_indice_specif(bdd, numCol, diff = FALSE, carte, codgeo1, codgeo2,
-  methode = "fisher-jenks", contour = TRUE, titre = NA, n = 5,
-  cols = carto.pal(pal1 = "purple.pal", n1 = n))
+carte_indice_specif(bdd, numCol, diff = FALSE, carte, codgeo1 = NA,
+  codgeo2 = NA, methode = "fisher-jenks", contour = TRUE, titre = NA,
+  n = 5, cols = carto.pal(pal1 = "purple.pal", n1 = n))
 }
 \arguments{
 \item{bdd}{data.frame. La base de données avec en première colonne le code géographique
@@ -23,9 +23,11 @@ Par défaut il vaut FALSE.}
 \item{carte}{spdf. Fond de carte à la même échelle que la base de données. 
 Si non renseigne aucune carte n'est affichee.}
 
-\item{codgeo1}{character. Nom de la variable correspondant au code géographique dans le fond de carte}
+\item{codgeo1}{character. Nom de la variable correspondant au code géographique dans le fond de carte.
+Par défaut vaut NA et la première colonne est considérée comme code géographique.}
 
-\item{codgeo2}{character. Nom de la variable correspondant au code géographique dans la base de données}
+\item{codgeo2}{character. Nom de la variable correspondant au code géographique dans la base de données.
+Par défaut vaut NA et la première colonne est considérée comme code géographique.}
 
 \item{methode}{string. Méthode de discrétisation de la carte. Voir \link[cartography]{choroLayer}
 pour les différentes méthodes possibles. Par défaut la méthode est "fisher-jenks".}
@@ -33,7 +35,7 @@ pour les différentes méthodes possibles. Par défaut la méthode est "fisher-j
 \item{contour}{boolean. Indique si le contour du fond plan doit être affiché sur la carte.
 Par défaut vaut TRUE.}
 
-\item{titre}{character. Titre de la carte. Par défaut, il est "Indice de spécicité de " suivi du nom de
+\item{titre}{character. Titre de la carte. Par défaut, il est "Indice de specicite de " suivi du nom de
 la catégorie considérée.}
 
 \item{n}{int. Nombre de classes à faire dans la carte. Par défaut : 5.}
@@ -42,20 +44,16 @@ la catégorie considérée.}
 pour les palettes de couleur. Par défaut : carto.pal(pal1 = "purple.pal", n1 = 5)}
 }
 \value{
-Affiche la carte de l'indice de spécificité de Kubrak calculé pour une catégorie
+Affiche la carte de l'indice de spécificité de Kubrak calculé pour une catégorie.
 }
 \description{
+Cette fonction réalise la carte de l'indice de spécificté de Kubrak pour une catégorie.
 L'indice de spécificté de Kubrak est calculé pour chaque zone et la catégorie demandée.
 r(ik) = X(ik)/X(k)  / ( (X(k) - X(ik)) / (X-X(i)) ) (par ratio)
 r(ik) = X(ik)/X(k)  - ( (X(k) - X(ik)) / (X-X(i)) ) (par différence)
-où i est la zone et k la catégorie
-La carte de cet indice est affichée.
+où i correspond à la zone et k à la catégorie
 }
 \examples{
-bdd <- data.frame(zones=c("zone1","zone2","zone3","zone4"),categorie1=c(22,14,7,55),
-categorie2=c(32,17,12,9),categorie3=c(41,32,10,16))
-indice_specif(bdd)
-indice_specif(bdd,diff=TRUE)
-
+# mettre un exemple
 
 }

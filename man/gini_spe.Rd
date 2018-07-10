@@ -2,7 +2,7 @@
 % Please edit documentation in R/gini_spe.R
 \name{gini_spe}
 \alias{gini_spe}
-\title{Cette fonction calcule l'indice de Gini de spécificité globale}
+\title{Calculer l'indice de Gini de spécificité globale}
 \usage{
 gini_spe(bdd)
 }
@@ -12,7 +12,7 @@ et les effectifs des différentes catégories dans les colonnes suivantes.}
 }
 \value{
 data.frame. Renvoit la base de données initiale avec une colonne supplémentaire contenant
-l'indice de Gini de spécificité globale
+l'indice de Gini de spécificité globale.
 }
 \description{
 Cette fonction calcule l'indice de Gini de spécificité globale qui est une mesure de
