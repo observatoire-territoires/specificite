@@ -1,7 +1,7 @@
 ###################################################################################
 ##'
 ##' @title
-##' Calculer un coefficient de spécificté globale comparant chaque zone
+##' Calculer un coefficient de spécificité globale comparant chaque zone
 ##' à la médiane du reste du territoire
 ##'
 ##' @param bdd data.frame. La base de données avec en première colonne le code géographique

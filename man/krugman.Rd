@@ -2,7 +2,7 @@
 % Please edit documentation in R/krugman.R
 \name{krugman}
 \alias{krugman}
-\title{Calculer le coefficient de specificite globale de Krugman, réaliser la carte}
+\title{Calculer le coefficient de spécificité globale de Krugman, réaliser la carte}
 \usage{
 krugman(bdd, carte = NA, codgeo1 = NA, codgeo2 = NA,
   methode = "fisher-jenks", contour = TRUE, titre = "Indice de Krugman",

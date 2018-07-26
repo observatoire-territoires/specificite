@@ -2,7 +2,7 @@
 % Please edit documentation in R/specif_mediane.R
 \name{specif_mediane}
 \alias{specif_mediane}
-\title{Calculer un coefficient de spécificté globale comparant chaque zone
+\title{Calculer un coefficient de spécificité globale comparant chaque zone
 à la médiane du reste du territoire}
 \usage{
 specif_mediane(bdd, part = FALSE)

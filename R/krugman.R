@@ -1,7 +1,7 @@
 ####################################################################################################
 ##'
 ##' @title
-##' Calculer le coefficient de specificite globale de Krugman, réaliser la carte 
+##' Calculer le coefficient de spécificité globale de Krugman, réaliser la carte 
 ##'
 ##' @param bdd data.frame. La base de données avec en première colonne le code géographique
 ##' et les effectifs des différentes catégories dans les colonnes suivantes.

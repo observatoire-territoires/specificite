@@ -2,7 +2,7 @@
 % Please edit documentation in R/indice_specif.R
 \name{indice_specif}
 \alias{indice_specif}
-\title{Calculer l'indice de spécificté de Kubrak}
+\title{Calculer l'indice de spécificité de Kubrak}
 \usage{
 indice_specif(bdd, diff = FALSE)
 }

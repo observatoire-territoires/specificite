@@ -1,7 +1,7 @@
 ###################################################################################
 ##'
 ##' @title
-##' Calculer l'indice de spécificté de Kubrak
+##' Calculer l'indice de spécificité de Kubrak
 ##'
 ##' @param bdd data.frame. La base de données avec en première colonne le code géographique
 ##' et les effectifs des différentes catégories dans les colonnes suivantes.
