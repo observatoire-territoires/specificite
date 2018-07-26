@@ -24,8 +24,8 @@ variable initiale.
 \description{
 Cette fonction calcule l'indice de spécificté de Kubrak
 L'indice de spécificté de Kubrak est calculé pour chaque zone et chaque catégorie.
-r(ik) = X(ik)/X(k)  / ( (X(k) - X(ik)) / (X-X(i)) ) (par ratio)
-r(ik) = X(ik)/X(k)  - ( (X(k) - X(ik)) / (X-X(i)) ) (par différence)
+/n r(ik) = X(ik)/X(k)  / ( (X(k) - X(ik)) / (X-X(i)) ) (par ratio)
+/n r(ik) = X(ik)/X(k)  - ( (X(k) - X(ik)) / (X-X(i)) ) (par différence)
 }
 \examples{
 bdd <- data.frame(zones=c("zone1","zone2","zone3","zone4"),categorie1=c(22,14,7,55),

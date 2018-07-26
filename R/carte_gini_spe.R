@@ -54,7 +54,7 @@ carte_gini_spe <- function(bdd,carte=NA, codgeo1=NA,codgeo2=NA, methode="fisher-
     if(is.na(codgeo2)){
       codgeo2 <- colnames(res)[1]
     }
-    carto <- merge(carte,res,by.x=codgeo1, by.y=codgeo2)
+    carto <- merge(carte,res,by.x=codgeo1, by.y=codgeo2,all.x=TRUE)
     choroLayer(x=carto,
                var="gini_specialisation",
                method=methode,

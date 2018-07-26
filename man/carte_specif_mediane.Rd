@@ -7,8 +7,8 @@
 \usage{
 carte_specif_mediane(bdd, part = FALSE, carte = NA, codgeo1 = NA,
   codgeo2 = NA, methode = "fisher-jenks", contour = TRUE,
-  titre = "Indice de specificite globale par rapport a la mediane", n = 5,
-  cols = carto.pal(pal1 = "purple.pal", n1 = n))
+  titre = "Indice de specificite globale \\npar rapport a la mediane",
+  n = 5, cols = carto.pal(pal1 = "purple.pal", n1 = n))
 }
 \arguments{
 \item{bdd}{data.frame. La base de données avec en première colonne le code géographique

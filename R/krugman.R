@@ -1,11 +1,11 @@
 ####################################################################################################
 ##'
 ##' @title
-##' Calculer le coefficient de specificte globale de Krugman, réaliser la carte 
+##' Calculer le coefficient de specificite globale de Krugman, réaliser la carte 
 ##'
 ##' @param bdd data.frame. La base de données avec en première colonne le code géographique
 ##' et les effectifs des différentes catégories dans les colonnes suivantes.
-##' @param carte spdf. Fond de carte à la même échelle que la base de données. Par defaut NA.
+##' @param carte spdf. Fond de carte à la même échelle que la base de données. Par défaut NA.
 ##' Si non renseigné aucune carte n'est affichée.
 ##' @param methode string. Méthode de discrétisation de la carte. Voir \link[cartography]{choroLayer}
 ##' pour les différentes méthodes possibles. Par défaut la méthode est "fisher-jenks".
@@ -73,7 +73,7 @@ krugman <- function(bdd,carte=NA, codgeo1=NA,codgeo2=NA, methode="fisher-jenks",
     if(is.na(codgeo2)){
       codgeo2 <- colnames(res)[1]
     }
-    carto <- merge(carte,res,by.x=codgeo1, by.y=codgeo2)
+    carto <- merge(carte,res,by.x=codgeo1, by.y=codgeo2,all.x=TRUE)
     choroLayer(x=carto,
                var="krugman",
                method=methode,

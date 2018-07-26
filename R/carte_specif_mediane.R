@@ -44,41 +44,11 @@
 
 
 carte_specif_mediane <- function(bdd,part=FALSE,carte=NA, codgeo1=NA,codgeo2=NA, methode="fisher-jenks", contour=TRUE,
-                    titre="Indice de specificite globale par rapport a la mediane", n=5,cols=carto.pal(pal1 = "purple.pal", n1 = n)){
+                    titre="Indice de specificite globale \npar rapport a la mediane", n=5,cols=carto.pal(pal1 = "purple.pal", n1 = n)){
   
   if(class(bdd)[1]!="data.frame"){
     bdd <- as.data.frame(bdd)
   }
-  
-  # BDD <- bdd[,2:ncol(bdd)]
-  # K <- ncol(BDD) # nb de categories
-  # I <- nrow(BDD) # nb de zones
-  # mediane <- NA
-  # # si la base est remplie en nombre
-  # if (!part){
-  #   # pour pouvoir calculer la médiane il faut d'abord calculer les parts de chaque cétagorie dans chaque zone
-  #   bdd_pct <- bdd %>%
-  #     adorn_totals("col") %>%                  # Rajoute la colonne "Total"
-  #     adorn_percentages(denominator="row")  # calcule %
-  #   bdd_pct <- bdd_pct[,-ncol(bdd_pct)] # enleve la derniere colonne "Total"
-  #   BDD <- bdd_pct[,2:ncol(bdd_pct)]
-  #   for ( i in 1:I) {
-  #     mediane[i] <- 0
-  #     for ( k in 1:K) {
-  #       mediane[i] <- mediane[i] + abs(BDD[i,k] - median(BDD[-i,k]))
-  #     }
-  #   }
-  # }
-  # # si la base est rempli en part/pourcentage avec X(ik)/X(i)
-  # else {
-  #   for ( i in 1:I) {
-  #     mediane[i] <- 0
-  #     for ( k in 1:K) {
-  #       mediane[i] <- mediane[i] + abs(BDD[i,k] - median(BDD[-i,k]))
-  #     }
-  #   }
-  # }
-  # res <- cbind(bdd,mediane)
   
   res <- specificite::specif_mediane(bdd,part)
   
@@ -89,7 +59,7 @@ carte_specif_mediane <- function(bdd,part=FALSE,carte=NA, codgeo1=NA,codgeo2=NA,
     if(is.na(codgeo2)){
       codgeo2 <- colnames(res)[1]
     }
-    carto <- merge(carte,res,by.x=codgeo1, by.y=codgeo2)
+    carto <- merge(carte,res,by.x=codgeo1, by.y=codgeo2,all.x=TRUE)
     choroLayer(x=carto,
                var="mediane",
                method=methode,

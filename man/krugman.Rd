@@ -2,7 +2,7 @@
 % Please edit documentation in R/krugman.R
 \name{krugman}
 \alias{krugman}
-\title{Calculer le coefficient de specificte globale de Krugman, réaliser la carte}
+\title{Calculer le coefficient de specificite globale de Krugman, réaliser la carte}
 \usage{
 krugman(bdd, carte = NA, codgeo1 = NA, codgeo2 = NA,
   methode = "fisher-jenks", contour = TRUE, titre = "Indice de Krugman",
@@ -12,7 +12,7 @@ krugman(bdd, carte = NA, codgeo1 = NA, codgeo2 = NA,
 \item{bdd}{data.frame. La base de données avec en première colonne le code géographique
 et les effectifs des différentes catégories dans les colonnes suivantes.}
 
-\item{carte}{spdf. Fond de carte à la même échelle que la base de données. Par defaut NA.
+\item{carte}{spdf. Fond de carte à la même échelle que la base de données. Par défaut NA.
 Si non renseigné aucune carte n'est affichée.}
 
 \item{codgeo1}{character. Nom de la variable correspondant au code géographique dans le fond de carte.

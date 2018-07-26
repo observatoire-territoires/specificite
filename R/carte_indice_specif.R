@@ -80,7 +80,7 @@ carte_indice_specif <- function(bdd,numCol,diff=FALSE,carte, codgeo1=NA,codgeo2=
     if(is.na(codgeo2)){
       codgeo2 <- colnames(res)[1]
     }
-    carto <- merge(carte,res,by.x=codgeo1, by.y=codgeo2)
+    carto <- merge(carte,res,by.x=codgeo1, by.y=codgeo2,all.x=TRUE)
     choroLayer(x=carto,
                var="indice_specif_var",
                method=methode,
